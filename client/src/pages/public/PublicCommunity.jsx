@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 export default function PublicCommunity() {
   return (
     <div className="public-page">
-      <section className="hero">
+      <section className="hero hero-pattern-bg">
         <h1>Learn together. Trade together.</h1>
         <p className="hero-sub">
           Share your charts, get feedback from other traders, and follow
-          setups from the community. Real trades, real discussion not
+          setups from the community. Real trades, real discussion — not
           just signals.
         </p>
       </section>

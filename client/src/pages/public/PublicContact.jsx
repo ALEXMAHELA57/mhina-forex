@@ -1,7 +1,7 @@
 export default function PublicContact() {
   return (
     <div className="public-page">
-      <section className="hero">
+      <section className="hero hero-pattern-bg">
         <h1>Get in touch</h1>
         <p className="hero-sub">
           Questions about courses, signals, or your account? Reach out —

@@ -9,7 +9,7 @@ const SAMPLE_SIGNALS = [
 export default function PublicSignals() {
   return (
     <div className="public-page">
-      <section className="hero">
+      <section className="hero hero-pattern-bg">
         <h1>Proven setups. Real opportunities.</h1>
         <p className="hero-sub">
           High-quality trading setups with clear entry, stop loss, and take

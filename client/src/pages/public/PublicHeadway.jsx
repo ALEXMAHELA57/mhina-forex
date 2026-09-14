@@ -6,7 +6,7 @@ const HEADWAY_LINK = import.meta.env.VITE_HEADWAY_REFERRAL_LINK
 export default function PublicHeadway() {
   return (
     <div className="public-page">
-      <section className="hero">
+      <section className="hero hero-pattern-bg">
         <h1>Ready to start trading?</h1>
         <p className="hero-sub">
           Open your trading account through our partner, Headway, and begin

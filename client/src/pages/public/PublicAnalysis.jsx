@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
 import TradingViewTicker from '../../components/TradingViewTicker.jsx';
 import TradingViewCalendar from '../../components/TradingViewCalendar.jsx';
 
 export default function PublicAnalysis() {
   return (
     <div className="public-page">
-      <section className="hero">
+      <section className="hero hero-pattern-bg">
         <h1>Understand the market. Trade with confidence.</h1>
         <p className="hero-sub">
-          Live prices and the economic calendar that actually moves them
+          Live prices and the economic calendar that actually moves them —
           plus our own written market outlook once you're inside the
           platform.
         </p>
@@ -33,6 +34,10 @@ export default function PublicAnalysis() {
           <h3>Our own market outlook</h3>
           <p>Beyond the raw data — our written analysis of structure, key levels, and bias for major instruments, available to registered members.</p>
         </div>
+      </section>
+
+      <section className="cta-band">
+        <Link to="/register" className="btn-primary">Get full access</Link>
       </section>
     </div>
   );
