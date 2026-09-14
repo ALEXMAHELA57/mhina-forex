@@ -1,0 +1,19 @@
+{
+  "name": "mhina-forex",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MHINA FOREX — single-folder monorepo (client + server)",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n SERVER,CLIENT -c blue,yellow \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "install:all": "npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
