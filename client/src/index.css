@@ -505,11 +505,15 @@ input:focus-visible {
    Public site (Home, About) — visible before login
    ============================================================ */
 .public-navbar {
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}
+.public-navbar-row {
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 16px 32px;
-  border-bottom: 1px solid var(--border);
 }
 .public-navbar .brand {
   display: flex;
@@ -555,6 +559,57 @@ input:focus-visible {
   font-weight: 600;
 }
 .btn-primary:hover { background: var(--gold-hover); }
+
+/* Mobile nav toggle + dropdown — hidden on desktop */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-left: auto;
+}
+.mobile-menu-toggle:hover { background: var(--surface-raised); }
+.mobile-menu-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 24px 20px;
+  border-top: 1px solid var(--border);
+}
+.mobile-menu-panel a {
+  color: var(--text-muted);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.mobile-menu-panel a.active { color: var(--gold); }
+.mobile-menu-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.mobile-menu-actions a {
+  border-bottom: none;
+  padding: 10px 16px;
+  flex: 1;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.mobile-menu-actions .btn-primary {
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-only { display: none !important; }
+  .mobile-menu-toggle { display: block; }
+  .public-navbar-row { padding: 14px 20px; }
+  .brand-logo { height: 48px; }
+}
+@media (min-width: 901px) {
+  .mobile-only { display: none !important; }
+}
 
 .public-home .hero,
 .public-about .hero {
