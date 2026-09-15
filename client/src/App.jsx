@@ -1,18 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import PublicLayout from './components/PublicLayout.jsx';
 import AuthenticatedLayout from './components/AuthenticatedLayout.jsx';
 
-// Public site — no login required
-import Home from './pages/public/Home.jsx';
-import About from './pages/public/About.jsx';
-import PublicEducation from './pages/public/PublicEducation.jsx';
-import PublicAnalysis from './pages/public/PublicAnalysis.jsx';
-import PublicSignals from './pages/public/PublicSignals.jsx';
-import PublicAIAnalyzer from './pages/public/PublicAIAnalyzer.jsx';
-import PublicCommunity from './pages/public/PublicCommunity.jsx';
-import PublicHeadway from './pages/public/PublicHeadway.jsx';
-import PublicContact from './pages/public/PublicContact.jsx';
+// Public site — one continuous scrolling page (see SinglePageSite.jsx)
+import SinglePageSite from './pages/public/SinglePageSite.jsx';
 
 // Auth
 import Login from './pages/Login.jsx';
@@ -49,17 +41,20 @@ import AdminManualPayments from './pages/AdminManualPayments.jsx';
 export default function App() {
   return (
     <Routes>
-      {/* Public site — no login required, visible to any visitor */}
+      {/* Public site — now one continuous scrolling page. Old individual
+          URLs redirect to the matching anchor on that page, so any
+          existing bookmarks/links (or a search engine's cached page)
+          still land in the right place instead of 404ing. */}
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/academy" element={<PublicEducation />} />
-        <Route path="/analysis" element={<PublicAnalysis />} />
-        <Route path="/signals" element={<PublicSignals />} />
-        <Route path="/ai-analyzer" element={<PublicAIAnalyzer />} />
-        <Route path="/community" element={<PublicCommunity />} />
-        <Route path="/headway" element={<PublicHeadway />} />
-        <Route path="/contact" element={<PublicContact />} />
+        <Route path="/" element={<SinglePageSite />} />
+        <Route path="/about" element={<Navigate to="/#about" replace />} />
+        <Route path="/academy" element={<Navigate to="/#academy" replace />} />
+        <Route path="/analysis" element={<Navigate to="/#analysis" replace />} />
+        <Route path="/signals" element={<Navigate to="/#signals" replace />} />
+        <Route path="/ai-analyzer" element={<Navigate to="/#ai-analyzer" replace />} />
+        <Route path="/community" element={<Navigate to="/#community" replace />} />
+        <Route path="/headway" element={<Navigate to="/#about" replace />} />
+        <Route path="/contact" element={<Navigate to="/#contact" replace />} />
       </Route>
 
       {/* Auth pages — no active membership required, just a session */}

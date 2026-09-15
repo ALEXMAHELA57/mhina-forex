@@ -25,6 +25,9 @@
 html, body, #root {
   height: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -611,8 +614,7 @@ input:focus-visible {
   .mobile-only { display: none !important; }
 }
 
-.public-home .hero,
-.public-about .hero {
+#home {
   max-width: 720px;
   margin: 0 auto;
   padding: 72px 24px 48px;
@@ -625,7 +627,7 @@ input:focus-visible {
    solid navy (where the text sits) while letting more of the photo show
    through on the right, so it reads as one continuous background rather
    than a photo sitting in a frame. */
-.public-home .hero {
+#home {
   position: relative;
   max-width: 100%;
   min-height: 560px;
@@ -639,7 +641,7 @@ input:focus-visible {
   background-size: cover;
   background-position: center 15%;
 }
-.public-home .hero::before {
+#home::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -651,13 +653,13 @@ input:focus-visible {
     rgba(10, 18, 32, 0.8) 100%
   );
 }
-.public-home .hero > * {
+#home > * {
   position: relative;
   z-index: 1;
   max-width: 480px;
   text-align: left;
 }
-.public-home .hero .hero-actions {
+#home .hero-actions {
   justify-content: flex-start;
 }
 
@@ -673,6 +675,9 @@ input:focus-visible {
   position: relative;
   overflow: hidden;
   background: var(--bg);
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
   padding-top: 80px !important;
   padding-bottom: 56px !important;
 }
@@ -741,24 +746,23 @@ input:focus-visible {
   .authenticated-app::after { animation: none; }
 }
 @media (max-width: 640px) {
-  .public-home .hero {
+  #home {
     padding: 48px 24px;
     min-height: 480px;
     align-items: center;
   }
-  .public-home .hero::before {
+  #home::before {
     background: linear-gradient(rgba(10, 18, 32, 0.85), rgba(10, 18, 32, 0.95));
   }
-  .public-home .hero > * {
+  #home > * {
     max-width: 100%;
     text-align: center;
   }
-  .public-home .hero .hero-actions {
+  #home .hero-actions {
     justify-content: center;
   }
 }
-.public-home .hero h1,
-.public-about .hero h1 {
+#home h1 {
   font-size: 36px;
   margin-bottom: 16px;
 }
@@ -1024,12 +1028,6 @@ input:focus-visible {
    Shared public sub-pages (Signals, Analysis, Education,
    Community, AI Analyzer, Headway, Contact)
    ============================================================ */
-.public-page .hero {
-  padding-bottom: 32px;
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
 
 .showcase-list.contained {
   max-width: 720px;
