@@ -281,12 +281,24 @@ input:focus-visible {
 
 /* --- Navbar --- */
 .navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}
+.navbar-row {
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 14px 24px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex: 1;
 }
 .navbar a {
   color: var(--text-muted);
@@ -304,15 +316,26 @@ input:focus-visible {
   align-items: center;
   margin-right: 4px;
 }
-.navbar button {
-  margin-left: auto;
+.navbar-row button, .mobile-logout-btn {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-muted);
 }
-.navbar button:hover {
+.navbar-row > button.desktop-only {
+  margin-left: auto;
+}
+.navbar-row button:hover, .mobile-logout-btn:hover {
   background: var(--surface-raised);
   color: var(--text);
+}
+.mobile-logout-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+@media (max-width: 900px) {
+  .navbar-row { padding: 14px 20px; }
 }
 
 /* --- Shared page containers --- */
