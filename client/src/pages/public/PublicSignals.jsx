@@ -33,7 +33,7 @@ export default function PublicSignals() {
             </div>
           </div>
         ))}
-        <span className="example-signal-caption">Example signals shown for illustration — live signals require an active membership.</span>
+        <span className="example-signal-caption">Example signals shown for illustration live signals require an active membership.</span>
       </section>
 
       <section className="pricing-tiers">

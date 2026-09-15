@@ -7,7 +7,7 @@ export default function PublicAIAnalyzer() {
         <h1>Upload a chart. Get a structured read.</h1>
         <p className="hero-sub">
           Our AI Chart Analyzer breaks down any chart the same way a
-          disciplined trader would — structure, key level, confirmation,
+          disciplined trader would structure, key level, confirmation,
           then entry, stop loss, and take profit. If there's no clear
           setup, it says so instead of forcing a trade.
         </p>

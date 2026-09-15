@@ -8,7 +8,7 @@ export default function PublicAnalysis() {
       <section className="hero hero-pattern-bg">
         <h1>Understand the market. Trade with confidence.</h1>
         <p className="hero-sub">
-          Live prices and the economic calendar that actually moves them —
+          Live prices and the economic calendar that actually moves them
           plus our own written market outlook once you're inside the
           platform.
         </p>

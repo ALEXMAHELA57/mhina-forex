@@ -53,7 +53,7 @@ export default function SinglePageSite() {
         <h1>Learn. Analyze. Trade. Grow.</h1>
         <p className="hero-sub">
           Structured Forex education, real market analysis, and trading
-          signals built from experience — not guesswork.
+          signals built from experience not guesswork.
         </p>
         <div className="hero-actions">
           <Link to="/register" className="btn-primary">Get started</Link>
@@ -65,7 +65,7 @@ export default function SinglePageSite() {
         <div className="showcase-featured">
           <span className="showcase-tag">AI-powered</span>
           <h2>AI Chart Analyzer</h2>
-          <p>Upload a chart and get structured analysis — not a guess, a framework: structure, key level, confirmation, then entry, stop loss, and take profit. If the setup isn't clear, it tells you that too.</p>
+          <p>Upload a chart and get structured analysis not a guess, a framework: structure, key level, confirmation, then entry, stop loss, and take profit. If the setup isn't clear, it tells you that too.</p>
 
           <div className="example-signal">
             <div className="example-signal-header">
@@ -77,7 +77,7 @@ export default function SinglePageSite() {
               <div><span className="label">Stop Loss</span><span className="value">2,460.00</span></div>
               <div><span className="label">Take Profit</span><span className="value">2,485.00</span></div>
             </div>
-            <span className="example-signal-caption">Example output — illustrative, not a live signal</span>
+            <span className="example-signal-caption">Example output illustrative, not a live signal</span>
           </div>
         </div>
 
@@ -92,7 +92,7 @@ export default function SinglePageSite() {
           </div>
           <div className="showcase-row">
             <h3>Trading Signals</h3>
-            <p>Clear entry, stop loss, and take profit levels — with the reasoning behind each call.</p>
+            <p>Clear entry, stop loss, and take profit levels with the reasoning behind each call.</p>
           </div>
           <div className="showcase-row">
             <h3>Community</h3>
@@ -100,7 +100,7 @@ export default function SinglePageSite() {
           </div>
           <div className="showcase-row">
             <h3>Live Sessions</h3>
-            <p>Mentorship calls and live broadcast classes — real trades, explained as they happen.</p>
+            <p>Mentorship calls and live broadcast classes real trades, explained as they happen.</p>
           </div>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default function SinglePageSite() {
           Our journey began in 2017, and on 4 December 2018 we launched
           the MHINA FOREX Telegram channel, where we started providing
           Forex education, market analysis, and trading signals. Today,
-          our vision goes beyond signals — we aim to help traders develop
+          our vision goes beyond signals we aim to help traders develop
           the knowledge, discipline, and confidence they need to
           understand the market and make better trading decisions.
         </p>
@@ -151,7 +151,7 @@ export default function SinglePageSite() {
         <div className="timeline-grid">
           <div className="timeline-item">
             <span className="timeline-year">2017</span>
-            <p>Started Forex journey — began learning, studying, and understanding the financial markets.</p>
+            <p>Started Forex journey began learning, studying, and understanding the financial markets.</p>
           </div>
           <div className="timeline-item">
             <span className="timeline-year">4 Dec 2018</span>
@@ -159,11 +159,11 @@ export default function SinglePageSite() {
           </div>
           <div className="timeline-item">
             <span className="timeline-year">Today</span>
-            <p>Growing together — education, analysis, signals, community, and technology, all in one place.</p>
+            <p>Growing together education, analysis, signals, community, and technology, all in one place.</p>
           </div>
           <div className="timeline-item">
             <span className="timeline-year">The future</span>
-            <p>MHINA FOREX Web Platform — a complete platform for every trader, with advanced tools, AI analysis, and more.</p>
+            <p>MHINA FOREX Web Platform a complete platform for every trader, with advanced tools, AI analysis, and more.</p>
           </div>
         </div>
       </section>
@@ -187,7 +187,7 @@ export default function SinglePageSite() {
           <span className="hero-line-2">Not just theory.</span>
         </h1>
         <p className="hero-sub">
-          Built from real trading experience, not textbooks — a clear
+          Built from real trading experience, not textbooks a clear
           path from beginner to advanced.
         </p>
       </section>
@@ -213,7 +213,7 @@ export default function SinglePageSite() {
       <section id="analysis" className="hero hero-pattern-bg">
         <h1>Understand the market. Trade with confidence.</h1>
         <p className="hero-sub">
-          Live prices and the economic calendar that actually moves them —
+          Live prices and the economic calendar that actually moves them
           plus our own written market outlook once you're inside the
           platform.
         </p>
@@ -226,7 +226,7 @@ export default function SinglePageSite() {
       <section className="showcase-list contained">
         <div className="showcase-row">
           <h3>Live economic calendar</h3>
-          <p>Real, live-updating events — CPI, interest rate decisions, non-farm payrolls — as they're released, not a static list.</p>
+          <p>Real, live-updating events CPI, interest rate decisions, non-farm payrolls — as they're released, not a static list.</p>
         </div>
       </section>
 
@@ -237,7 +237,7 @@ export default function SinglePageSite() {
       <section className="showcase-list contained">
         <div className="showcase-row">
           <h3>Our own market outlook</h3>
-          <p>Beyond the raw data — our written analysis of structure, key levels, and bias for major instruments, available to registered members.</p>
+          <p>Beyond the raw data our written analysis of structure, key levels, and bias for major instruments, available to registered members.</p>
         </div>
       </section>
 
@@ -270,7 +270,7 @@ export default function SinglePageSite() {
             </div>
           </div>
         ))}
-        <span className="example-signal-caption">Example signals shown for illustration — live signals require an active membership.</span>
+        <span className="example-signal-caption">Example signals shown for illustration live signals require an active membership.</span>
       </section>
 
       <section className="pricing-tiers">
@@ -297,7 +297,7 @@ export default function SinglePageSite() {
         <h1>Upload a chart. Get a structured read.</h1>
         <p className="hero-sub">
           Our AI Chart Analyzer breaks down any chart the same way a
-          disciplined trader would — structure, key level, confirmation,
+          disciplined trader would structure, key level, confirmation,
           then entry, stop loss, and take profit. If there's no clear
           setup, it says so instead of forcing a trade.
         </p>
@@ -327,7 +327,7 @@ export default function SinglePageSite() {
         <h1>Learn together. Trade together.</h1>
         <p className="hero-sub">
           Share your charts, get feedback from other traders, and follow
-          setups from the community. Real trades, real discussion — not
+          setups from the community. Real trades, real discussion not
           just signals.
         </p>
       </section>
