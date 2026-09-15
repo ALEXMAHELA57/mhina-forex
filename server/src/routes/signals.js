@@ -46,4 +46,37 @@ router.post('/', requireAuth, requireStaff, async (req, res) => {
   res.status(201).json({ signal: data });
 });
 
+// PATCH /api/signals/:id — staff-only edit. Also handles closing a
+// signal: changing status away from 'open' auto-stamps closed_at (unless
+// the caller already provided one), and moving it back to 'open' clears
+// closed_at — keeps that field meaningful without the admin having to
+// remember to set it by hand every time.
+router.patch('/:id', requireAuth, requireStaff, async (req, res) => {
+  const updates = { ...req.body };
+
+  if (updates.status && updates.status !== 'open' && !updates.closed_at) {
+    updates.closed_at = new Date().toISOString();
+  }
+  if (updates.status === 'open') {
+    updates.closed_at = null;
+  }
+
+  const { data, error } = await supabaseAdmin
+    .from('signals')
+    .update(updates)
+    .eq('id', req.params.id)
+    .select()
+    .single();
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ signal: data });
+});
+
+// DELETE /api/signals/:id — staff-only, for a signal published by mistake
+router.delete('/:id', requireAuth, requireStaff, async (req, res) => {
+  const { error } = await supabaseAdmin.from('signals').delete().eq('id', req.params.id);
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ ok: true });
+});
+
 export default router;
