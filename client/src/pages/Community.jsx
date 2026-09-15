@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { api } from '../lib/api.js';
 import { uploadImage } from '../lib/uploadImage.js';
+import { useProfile } from '../lib/useProfile.js';
 
 // TODO: replace with your real Telegram channel link
 const TELEGRAM_LINK = 'https://t.me/mhinaforex';
 
 export default function Community() {
+  const { profile } = useProfile();
   const [posts, setPosts] = useState([]);
   const [caption, setCaption] = useState('');
   const [file, setFile] = useState(null);
@@ -14,6 +16,8 @@ export default function Community() {
   const [openComments, setOpenComments] = useState({}); // postId -> comments array
   const [newComment, setNewComment] = useState({}); // postId -> draft text
   const [commentSubmitting, setCommentSubmitting] = useState(null); // postId currently submitting
+  const [editingPostId, setEditingPostId] = useState(null);
+  const [editCaption, setEditCaption] = useState('');
 
   function loadPosts() {
     api.get('/community/posts').then((res) => setPosts(res.posts)).catch((err) => setError(err.message));
@@ -45,6 +49,31 @@ export default function Community() {
   async function toggleLike(postId) {
     await api.post(`/community/posts/${postId}/like`);
     loadPosts();
+  }
+
+  function startEdit(post) {
+    setEditingPostId(post.id);
+    setEditCaption(post.caption || '');
+  }
+
+  async function saveEdit(postId) {
+    try {
+      await api.patch(`/community/posts/${postId}`, { caption: editCaption });
+      setEditingPostId(null);
+      loadPosts();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function deletePost(postId) {
+    if (!confirm('Delete this post? This cannot be undone.')) return;
+    try {
+      await api.delete(`/community/posts/${postId}`);
+      loadPosts();
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   async function toggleComments(postId) {
@@ -103,12 +132,28 @@ export default function Community() {
           {p.chart_image_url && (
             <img src={p.chart_image_url} alt="Chart shared to community" className="post-chart-image" />
           )}
-          <p>{p.caption}</p>
+          {editingPostId === p.id ? (
+            <div className="post-edit-form">
+              <input value={editCaption} onChange={(e) => setEditCaption(e.target.value)} />
+              <div className="post-actions">
+                <button onClick={() => saveEdit(p.id)}>Save</button>
+                <button onClick={() => setEditingPostId(null)}>Cancel</button>
+              </div>
+            </div>
+          ) : (
+            <p>{p.caption}</p>
+          )}
           <div className="post-actions">
             <button onClick={() => toggleLike(p.id)}>Like</button>
             <button onClick={() => toggleComments(p.id)}>
               {openComments[p.id] ? 'Hide comments' : 'Comments'}
             </button>
+            {profile && p.author_id === profile.id && editingPostId !== p.id && (
+              <>
+                <button onClick={() => startEdit(p)}>Edit</button>
+                <button onClick={() => deletePost(p.id)} className="danger-btn">Delete</button>
+              </>
+            )}
           </div>
 
           {openComments[p.id] && (

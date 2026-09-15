@@ -447,6 +447,17 @@ input:focus-visible {
   border-radius: 8px;
   margin: 10px 0;
 }
+@media (max-width: 640px) {
+  .post-chart-image {
+    max-height: 240px;
+  }
+}
+.post-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0;
+}
 
 .signal-card-top {
   display: flex;

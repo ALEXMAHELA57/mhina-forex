@@ -71,6 +71,42 @@ router.delete('/posts/:id', requireAuth, async (req, res) => {
   res.json({ ok: true });
 });
 
+// PATCH /api/community/posts/:id — edit your own post's caption (own
+// post only — even staff can't silently rewrite someone else's post,
+// only remove it via DELETE/moderation if it needs to come down)
+router.patch('/posts/:id', requireAuth, async (req, res) => {
+  const { caption } = req.body;
+  if (!caption) return res.status(400).json({ error: 'caption is required' });
+
+  const { data: existingPost, error: fetchError } = await supabaseAdmin
+    .from('community_posts')
+    .select('author_id')
+    .eq('id', req.params.id)
+    .single();
+
+  if (fetchError || !existingPost) return res.status(404).json({ error: 'Post not found' });
+  if (existingPost.author_id !== req.user.id) return res.status(403).json({ error: 'Not authorized to edit this post' });
+
+  const { data, error } = await supabaseAdmin
+    .from('community_posts')
+    .update({ caption })
+    .eq('id', req.params.id)
+    .select('*, profiles!author_id(username, avatar_media_id), chart_media:media_assets!chart_media_id(provider, provider_asset_id)')
+    .single();
+
+  if (error) return res.status(500).json({ error: error.message });
+
+  const post = {
+    ...data,
+    chart_image_url:
+      data.chart_media?.provider === 'cloudflare_images'
+        ? getImageDeliveryUrl(data.chart_media.provider_asset_id)
+        : null,
+  };
+
+  res.json({ post });
+});
+
 // POST /api/community/posts/:id/like — toggle like
 router.post('/posts/:id/like', requireAuth, async (req, res) => {
   const { data: existing } = await supabaseAdmin
