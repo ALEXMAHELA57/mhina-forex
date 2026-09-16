@@ -88,6 +88,16 @@ input:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 1px;
 }
+/* Date/time inputs (e.g. scheduling a live session) — the browser's
+   built-in calendar/clock icon defaults to black, which is basically
+   invisible against our dark input backgrounds. Inverting it turns a
+   black icon white, so it's actually visible. */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
 
 .error {
   color: var(--red);
