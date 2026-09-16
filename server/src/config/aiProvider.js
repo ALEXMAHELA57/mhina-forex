@@ -13,7 +13,10 @@ export async function analyzeChartImage({ imageUrl, instrument, timeframe, trade
 chart and return STRICT JSON with keys: structure, keyLevel, confirmation, entryZone,
 stopLoss, takeProfit, riskReward, noClearSetup (boolean). If conditions are unclear,
 set noClearSetup=true and leave trade fields null. Never force a BUY/SELL.
-This is educational analysis, not a guaranteed trade outcome.`;
+This is educational analysis, not a guaranteed trade outcome.
+Respond with ONLY the raw JSON object — no markdown code fences, no \`\`\`json wrapper,
+no explanation before or after it. Your entire response must be valid JSON, starting
+with { and ending with }.`;
 
   const resp = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -23,7 +26,7 @@ This is educational analysis, not a guaranteed trade outcome.`;
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-sonnet-5',
       max_tokens: 1000,
       system: systemPrompt,
       messages: [
@@ -49,11 +52,20 @@ This is educational analysis, not a guaranteed trade outcome.`;
   const json = await resp.json();
   const textBlock = json.content?.find((b) => b.type === 'text')?.text ?? '{}';
 
+  // Defensive: even with an explicit instruction not to, models sometimes
+  // still wrap JSON in markdown code fences (```json ... ```). Strip that
+  // before parsing rather than treating it as a real "no clear setup"
+  // result — this was previously causing EVERY analysis to come back
+  // inconclusive regardless of what the chart actually showed.
+  const cleaned = textBlock.trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim();
+
   try {
-    return JSON.parse(textBlock);
+    return JSON.parse(cleaned);
   } catch {
-    // Model didn't return clean JSON — surface raw text so it's visible
-    // during debugging rather than silently failing.
+    // Still not valid JSON after stripping fences — now this really is
+    // worth surfacing as a parse failure for debugging, rather than a
+    // genuine "no clear setup" analysis result.
+    console.error('AI analyzer: failed to parse model response as JSON:', textBlock);
     return { noClearSetup: true, raw: textBlock };
   }
 }
