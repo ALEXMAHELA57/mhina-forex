@@ -9,6 +9,8 @@ dotenv.config();
  * nothing else in the codebase needs to change.
  */
 export async function analyzeChartImage({ imageUrl, instrument, timeframe, tradeType }) {
+  console.log('AI analyzer: sending image URL to Claude:', imageUrl);
+
   const systemPrompt = `You are MHINA FOREX's chart analysis assistant. Analyze the provided
 chart and return STRICT JSON with keys: structure, keyLevel, confirmation, entryZone,
 stopLoss, takeProfit, riskReward, noClearSetup (boolean). If conditions are unclear,
@@ -51,6 +53,7 @@ with { and ending with }.`;
 
   const json = await resp.json();
   const textBlock = json.content?.find((b) => b.type === 'text')?.text ?? '{}';
+  console.log('AI analyzer: raw model response:', textBlock);
 
   // Defensive: even with an explicit instruction not to, models sometimes
   // still wrap JSON in markdown code fences (```json ... ```). Strip that
