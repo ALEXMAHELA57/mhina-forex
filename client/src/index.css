@@ -99,6 +99,41 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+/* <select> dropdowns had ZERO custom styling before this — rendering
+   as a raw, unstyled browser default (white box, black text, black
+   arrow) with no connection to the dark theme at all. Matches the
+   input styling above, plus a custom light-gray arrow (the browser's
+   own default arrow is black and invisible against a dark background,
+   same root problem as the calendar icon fix above). */
+select {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 9px 32px 9px 12px;
+  font-size: 14px;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238891a6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
 .error {
   color: var(--red);
   font-size: 13px;
