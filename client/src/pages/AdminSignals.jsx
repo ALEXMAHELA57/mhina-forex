@@ -109,7 +109,7 @@ export default function AdminSignals() {
         <input
           placeholder="Instrument (e.g. XAUUSD)"
           value={form.instrument}
-          onChange={(e) => setForm({ ...form, instrument: e.target.value })}
+          onChange={(e) => setForm({ ...form, instrument: e.target.value.toUpperCase() })}
           required
         />
         <select value={form.direction} onChange={(e) => setForm({ ...form, direction: e.target.value })}>

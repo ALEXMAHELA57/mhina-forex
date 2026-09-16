@@ -45,7 +45,7 @@ export default function AdminMarketNews() {
         <input
           placeholder="Instrument (e.g. Gold, EUR/USD)"
           value={analysisForm.instrument}
-          onChange={(e) => setAnalysisForm({ ...analysisForm, instrument: e.target.value })}
+          onChange={(e) => setAnalysisForm({ ...analysisForm, instrument: e.target.value.toUpperCase() })}
           required
         />
         <select value={analysisForm.trend} onChange={(e) => setAnalysisForm({ ...analysisForm, trend: e.target.value })}>

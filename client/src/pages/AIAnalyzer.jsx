@@ -45,7 +45,7 @@ export default function AIAnalyzer() {
       <h1>AI Chart Analyzer</h1>
       <form onSubmit={analyze}>
         <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0] ?? null)} required />
-        <input placeholder="Instrument" value={instrument} onChange={(e) => setInstrument(e.target.value)} />
+        <input placeholder="Instrument" value={instrument} onChange={(e) => setInstrument(e.target.value.toUpperCase())} />
         <input placeholder="Timeframe" value={timeframe} onChange={(e) => setTimeframe(e.target.value)} />
         <button type="submit" disabled={uploading}>{uploading ? 'Analyzing…' : 'Analyze'}</button>
       </form>
