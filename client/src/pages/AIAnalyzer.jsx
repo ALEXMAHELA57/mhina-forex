@@ -53,18 +53,35 @@ export default function AIAnalyzer() {
       {error && <p className="error">{error}</p>}
       {result && (
         <div className="analysis-result">
+          {/* Structure/key level/confirmation are useful either way — a
+              trader benefits from knowing what's happening and what to
+              watch for even when there's no trade to take right now.
+              Throwing this away when no_clear_setup is true wastes
+              genuinely useful reasoning. */}
+          <div className="analysis-reasoning">
+            <p><strong>Structure:</strong> {result.structure_note}</p>
+            <p><strong>Key Level:</strong> {result.key_level_note}</p>
+            <p><strong>What to watch for:</strong> {result.confirmation_note}</p>
+          </div>
+
           {result.no_clear_setup ? (
-            <p>No clear setup — analysis is inconclusive right now.</p>
+            <div className="no-setup-banner">
+              <span className="status-badge status-neutral">NO CLEAR SETUP YET</span>
+              <p>Conditions aren't clean enough for a confident call right now — see "what to watch for" above for what would need to happen first.</p>
+            </div>
           ) : (
-            <>
-              <p>Structure: {result.structure_note}</p>
-              <p>Key Level: {result.key_level_note}</p>
-              <p>Confirmation: {result.confirmation_note}</p>
-              <p>Entry Zone: {result.entry_zone}</p>
-              <p>Stop Loss: {result.stop_loss}</p>
-              <p>Take Profit: {result.take_profit}</p>
-              <p>Risk/Reward: {result.risk_reward}</p>
-            </>
+            <div className="example-signal">
+              <div className="example-signal-header">
+                <span className="pair">{instrument}</span>
+                <span className="status-badge status-open">SETUP FOUND</span>
+              </div>
+              <div className="example-signal-levels">
+                <div><span className="label">Entry Zone</span><span className="value">{result.entry_zone}</span></div>
+                <div><span className="label">Stop Loss</span><span className="value">{result.stop_loss}</span></div>
+                <div><span className="label">Take Profit</span><span className="value">{result.take_profit}</span></div>
+                <div><span className="label">Risk/Reward</span><span className="value">{result.risk_reward}</span></div>
+              </div>
+            </div>
           )}
         </div>
       )}

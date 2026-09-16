@@ -540,6 +540,35 @@ select option {
   opacity: 0.6;
 }
 
+.analysis-reasoning {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.analysis-reasoning p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+.analysis-reasoning p:last-child { margin-bottom: 0; }
+.no-setup-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.no-setup-banner p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
 .admin-signal-card {
   display: flex;
   flex-direction: column;
